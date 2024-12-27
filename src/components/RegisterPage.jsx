@@ -60,7 +60,7 @@ const RegisterPage = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <div className="logo">Quiz aja</div>
+        <div className="logo">Quiz 4Life</div>
         <div className="input-group">
           <input
             className="input-field"

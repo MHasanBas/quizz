@@ -89,9 +89,9 @@ const QuizPage = () => {
   const handleQuizEnd = useCallback(() => {
     navigate("/result", {
       state: {
-        score,
-        total: currentQuestionIndex + 0, // Total questions attempted
-        wrong: (currentQuestionIndex + 1) - score,
+      score,
+      total: currentQuestionIndex + 1 === questions.length ? currentQuestionIndex + 1 : currentQuestionIndex + 0,
+      wrong: (currentQuestionIndex + 1) - score,
       },
     });
 
