@@ -3,7 +3,12 @@
 A fun and interactive quiz application built with React. Test your knowledge with dynamic questions, a sleek user interface, and real-time feedback.
 
 ## 📸 Preview
-[Add your preview image here]
+
+### Quiz Homepage
+<img src="public/beranda.png" alt="Quiz Homepage" width="600"/>
+
+### Quiz Results
+<img src="public/result.png" alt="Quiz Results" width="600"/>
 
 ## ✨ Features
 - 📱 **Responsive Design**: Works on all devices
@@ -23,10 +28,11 @@ A fun and interactive quiz application built with React. Test your knowledge wit
 ### Installation
 ```bash
 git clone https://github.com/MHasanBas/quizz.git
-cd quiz-app
+cd quizz
 pnpm install
 pnpm start
 ```
+
 Visit `http://localhost:3000` to start the quiz!
 
 ## 🎨 UI Features
@@ -37,7 +43,7 @@ Visit `http://localhost:3000` to start the quiz!
 - Detailed results page
 
 ## 🌐 API Integration
-Uses [Open Trivia Database](https://opentdb.com/api) for questions.
+Uses [OpenTDB API](https://opentdb.com/api.php?amount=10&type=multiple) for questions.
 
 ### Sample API Response
 ```json
@@ -48,7 +54,7 @@ Uses [Open Trivia Database](https://opentdb.com/api) for questions.
       "type": "multiple",
       "difficulty": "medium",
       "category": "Entertainment: Music",
-      "question": "Which band had hits in 1972 with 'Baby I'm A Want You', 'Everything I Own' and 'The Guitar Man'",
+      "question": "Which band had hits in 1972 with 'Baby I'm A Want You', 'Everything I Own' and 'The Guitar Man'?",
       "correct_answer": "Bread",
       "incorrect_answers": ["America", "Chicago", "Smokie"]
     },
@@ -65,8 +71,8 @@ Uses [Open Trivia Database](https://opentdb.com/api) for questions.
 ```
 
 ## 🛠️ Customization
-- Styles: Edit `src/styles.css`
-- Questions: Modify `fetchQuestions` function
+- **Styles**: Edit `src/styles.css`
+- **Questions**: Modify `fetchQuestions` function
 
 ## 📝 License
 MIT License
