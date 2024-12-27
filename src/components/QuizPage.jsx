@@ -24,10 +24,12 @@ const QuizPage = () => {
     const savedQuestionIndex = localStorage.getItem("currentQuestionIndex");
     const savedScore = localStorage.getItem("score");
     const savedHasStarted = localStorage.getItem("hasStarted");
+    const savedTimer = localStorage.getItem("timer");
 
     if (savedQuestionIndex) setCurrentQuestionIndex(parseInt(savedQuestionIndex, 10));
     if (savedScore) setScore(parseInt(savedScore, 10));
     if (savedHasStarted === "true") setHasStarted(true);
+    if (savedTimer) setTimer(parseInt(savedTimer, 10));
   }, []);
 
   // Simpan status quiz ke localStorage saat terjadi perubahan
@@ -35,7 +37,8 @@ const QuizPage = () => {
     localStorage.setItem("currentQuestionIndex", currentQuestionIndex);
     localStorage.setItem("score", score);
     localStorage.setItem("hasStarted", hasStarted);
-  }, [currentQuestionIndex, score, hasStarted]);
+    localStorage.setItem("timer", timer);
+  }, [currentQuestionIndex, score, hasStarted, timer]);
 
   // Ambil pertanyaan quiz
   const fetchQuestions = async () => {
@@ -87,8 +90,8 @@ const QuizPage = () => {
     navigate("/result", {
       state: {
         score,
-        total: questions.length,
-        wrong: questions.length - score,
+        total: currentQuestionIndex + 0, // Total questions attempted
+        wrong: (currentQuestionIndex + 1) - score,
       },
     });
 
@@ -96,7 +99,8 @@ const QuizPage = () => {
     localStorage.removeItem("currentQuestionIndex");
     localStorage.removeItem("score");
     localStorage.removeItem("hasStarted");
-  }, [navigate, score, questions.length]);
+    localStorage.removeItem("timer");
+  }, [navigate, score, currentQuestionIndex]);
 
   const handleAnswer = (answer) => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -109,6 +113,19 @@ const QuizPage = () => {
       handleQuizEnd();
     }
   };
+
+  // Handle offline scenario
+  useEffect(() => {
+    const handleOffline = () => {
+      alert("You are offline. Your progress has been saved.");
+    };
+
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   if (loading) {
     return <div className="quiz-container">Loading questions...</div>;
